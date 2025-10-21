@@ -11,7 +11,6 @@ export function App() {
     { id: v1(), title: 'JS', isDone: true },
   ]);
   console.log(setTasks);
-
   return (
     <Layout>
       <p>Старт разработки...</p>
