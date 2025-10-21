@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🎯 Pre-commit: запускаем lint-staged..."
+pnpm lint-staged || exit 1
+echo "✅ Pre-commit проверки пройдены!"
