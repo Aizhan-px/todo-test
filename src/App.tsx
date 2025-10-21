@@ -12,11 +12,15 @@ export function App() {
     { id: v1(), title: 'ReactJS', isDone: false },
   ]);
   console.log(setTasks);
+  const addTask = (title: string) => {
+    const newTask: Task = { id: v1(), title: title, isDone: false };
+    setTasks([...tasks, newTask]);
+  };
 
   return (
     <Layout>
       <p>Старт разработки...</p>
-      <ToDoList title={'What to learn'} tasks={tasks} />
+      <ToDoList addTask={addTask} title={'What to learn'} tasks={tasks} />
     </Layout>
   );
 }
