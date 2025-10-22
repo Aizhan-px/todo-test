@@ -11,16 +11,31 @@ export function App() {
     { id: v1(), title: 'JS', isDone: true },
     { id: v1(), title: 'ReactJS', isDone: false },
   ]);
-  console.log(setTasks);
   const addTask = (title: string) => {
-    const newTask: Task = { id: v1(), title: title, isDone: false };
-    setTasks([...tasks, newTask]);
+    if (title.trim()) {
+      const newTask: Task = {
+        id: v1(),
+        title: title.trim(),
+        isDone: false,
+      };
+      setTasks([...tasks, newTask]);
+    }
+  };
+
+  const removeTask = (id: string) => {
+    console.log('Removing task with id:', id);
+    console.log('Current tasks:', tasks);
+    setTasks(tasks.filter((task) => task.id !== id));
   };
 
   return (
     <Layout>
-      <p>Старт разработки...</p>
-      <ToDoList addTask={addTask} title={'What to learn'} tasks={tasks} />
+      <ToDoList
+        addTask={addTask}
+        removeTask={removeTask}
+        title={'What to learn'}
+        tasks={tasks}
+      />
     </Layout>
   );
 }

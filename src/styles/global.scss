@@ -1,15 +1,23 @@
-/* 1. Подключаем normalize */
-@import 'normalize.css';
-/* 2. Сброс некоторых базовых стилей */
-*,
-*::before,
-*::after {
+@import 'normalize.css';   //чтобы убрать стили браузера
+
+* {    
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box;  // вкл padding и  border
+}   
+
+body {  
+  font-family: Arial, sans-serif;
+  background: #f0f2f5;
+  color: #333;
 }
+
 button {
-  cursor: pointer;
-  border: none;
+  cursor: pointer; //курсор при наведении
+  border: none;   //нет рамок и фона
   background: none;
+}
+
+input {
+  font-family: inherit; //чтобы шрифт был как у родительского элемента
 }
