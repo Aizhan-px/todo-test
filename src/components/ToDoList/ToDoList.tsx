@@ -8,6 +8,8 @@ type TToDoListProps = {
   tasks: Task[];
   addTask: (title: string) => void;
   removeTask: (id: string) => void;
+  filter: string;
+  setFilter: (filter: string) => void;
 };
 
 export const ToDoList = (props: TToDoListProps) => {
@@ -34,6 +36,36 @@ export const ToDoList = (props: TToDoListProps) => {
           }}
         >
           +
+        </button>
+      </div>
+      <div className={styles.filterButtons}>
+        <button
+          className={
+            props.filter === 'all' ? styles.activeFilter : styles.filterButton
+          }
+          onClick={() => props.setFilter('all')}
+        >
+          Все
+        </button>
+        <button
+          className={
+            props.filter === 'active'
+              ? styles.activeFilter
+              : styles.filterButton
+          }
+          onClick={() => props.setFilter('active')}
+        >
+          Активные
+        </button>
+        <button
+          className={
+            props.filter === 'completed'
+              ? styles.activeFilter
+              : styles.filterButton
+          }
+          onClick={() => props.setFilter('completed')}
+        >
+          Выполненные
         </button>
       </div>
       {props.tasks.length === 0 ? (

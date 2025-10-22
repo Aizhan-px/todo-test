@@ -12,7 +12,6 @@
   font-size: 24px;
 }
 
-
 //чтобы импут и кнопка в ряд была
 .addTaskForm {
   display: flex;
@@ -28,7 +27,6 @@
   font-size: 16px;
 }
 
-
 //стилизация кнопки добавления задачи
 .addButton {
   padding: 10px 20px;
@@ -43,7 +41,6 @@
 .addButton:hover {
   background: #0056b3;
 }
-
 
 //для списка задач
 .taskList {
@@ -74,8 +71,38 @@
   font-size: 16px;
 }
 
-
 //сообщение , что тасок нет
+.filterButtons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.filterButton {
+  padding: 8px 16px;
+  background: #f8f9fa;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.filterButton:hover {
+  background: #e9ecef;
+}
+
+.activeFilter {
+  padding: 8px 16px;
+  background: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
 .emptyMessage {
   text-align: center;
   color: #666;

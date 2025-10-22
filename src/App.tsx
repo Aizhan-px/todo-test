@@ -5,7 +5,7 @@ import { v1 } from 'uuid';
 import { ToDoList } from './components/ToDoList/ToDoList.tsx';
 
 export function App() {
-  // const [filter, setFilter] = useState<FilterValues>('all');
+  const [filter, setFilter] = useState('all');
   const [tasks, setTasks] = useState<Task[]>([
     { id: v1(), title: 'HTML&CSS', isDone: true },
     { id: v1(), title: 'JS', isDone: true },
@@ -28,13 +28,24 @@ export function App() {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
+  // Фильтрация задач
+  let filteredTasks = tasks;
+  if (filter === 'active') {
+    filteredTasks = tasks.filter((task) => task.isDone === false);
+  }
+  if (filter === 'completed') {
+    filteredTasks = tasks.filter((task) => task.isDone === true);
+  }
+
   return (
     <Layout>
       <ToDoList
         addTask={addTask}
         removeTask={removeTask}
         title={'What to learn'}
-        tasks={tasks}
+        tasks={filteredTasks}
+        filter={filter}
+        setFilter={setFilter}
       />
     </Layout>
   );
