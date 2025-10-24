@@ -1,18 +1,25 @@
 .layout {
-  display: flex;
-  flex-direction: column;
   min-height: 100vh;
-  justify-content: space-between;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;  //элементы в колонку
+  justify-content: space-between;  //по высоте
 
-  &__header,
-  &__footer {
-    background: #f5f5f5;
-    padding: 1rem;
-    text-align: center;
+  &__header {
+    text-align: center; // заголовок по центру
+    margin-bottom: 20px;
   }
 
   &__content {
-    flex: 1;
-    padding: 2rem;
+    flex: 1;   //чтобы занимал все место и был по цетру
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
   }
 }
