@@ -37,6 +37,14 @@ export function App() {
     filteredTasks = tasks.filter((task) => task.isDone === true);
   }
 
+  const handelIsDone = (id: string, cheked: boolean) => {
+    const newTasks = tasks.map((t) => {
+      if (id === t.id) return { ...t, isDone: cheked };
+      return t;
+    });
+    setTasks(newTasks);
+  };
+
   return (
     <Layout>
       <ToDoList
@@ -46,6 +54,7 @@ export function App() {
         tasks={filteredTasks}
         filter={filter}
         setFilter={setFilter}
+        handleIsDoneTask={handelIsDone}
       />
     </Layout>
   );

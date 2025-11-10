@@ -3,21 +3,30 @@ import { useState } from 'react';
 import { DeleteIcon } from '../DeleteIcon/DeleteIcon';
 import styles from './ToDoList.module.scss';
 
-type TToDoListProps = {
+type Props = {
   title: string;
   tasks: Task[];
   addTask: (title: string) => void;
   removeTask: (id: string) => void;
   filter: string;
   setFilter: (filter: string) => void;
+  handleIsDoneTask: (taskId: string, checked: boolean) => void;
 };
 
-export const ToDoList = (props: TToDoListProps) => {
+export const ToDoList = ({
+  title,
+  tasks,
+  addTask,
+  removeTask,
+  filter,
+  setFilter,
+  handleIsDoneTask,
+}: Props) => {
   const [value, setValue] = useState<string>('');
 
   return (
     <div className={styles.todoList}>
-      <h3 className={styles.title}>{props.title}</h3>
+      <h3 className={styles.title}>{title}</h3>
       <div className={styles.addTaskForm}>
         <input
           className={styles.input}
@@ -29,10 +38,11 @@ export const ToDoList = (props: TToDoListProps) => {
         <button
           className={styles.addButton}
           onClick={() => {
-            if (value.trim()) {
-              props.addTask(value);
-              setValue('');
+            if (!value.trim()) {
+              return;
             }
+            addTask(value);
+            setValue('');
           }}
         >
           +
@@ -41,43 +51,42 @@ export const ToDoList = (props: TToDoListProps) => {
       <div className={styles.filterButtons}>
         <button
           className={
-            props.filter === 'all' ? styles.activeFilter : styles.filterButton
+            filter === 'all' ? styles.activeFilter : styles.filterButton
           }
-          onClick={() => props.setFilter('all')}
+          onClick={() => setFilter('all')}
         >
           Все
         </button>
         <button
           className={
-            props.filter === 'active'
-              ? styles.activeFilter
-              : styles.filterButton
+            filter === 'active' ? styles.activeFilter : styles.filterButton
           }
-          onClick={() => props.setFilter('active')}
+          onClick={() => setFilter('active')}
         >
           Активные
         </button>
         <button
           className={
-            props.filter === 'completed'
-              ? styles.activeFilter
-              : styles.filterButton
+            filter === 'completed' ? styles.activeFilter : styles.filterButton
           }
-          onClick={() => props.setFilter('completed')}
+          onClick={() => setFilter('completed')}
         >
           Выполненные
         </button>
       </div>
-      {props.tasks.length === 0 ? (
+      {tasks.length === 0 ? (
         <p className={styles.emptyMessage}>Тасок нет</p>
       ) : (
         <ul className={styles.taskList}>
-          {props.tasks.map((task) => {
+          {tasks.map((task) => {
             return (
               <li key={task.id} className={styles.taskItem}>
                 <input
                   type="checkbox"
                   checked={task.isDone}
+                  onChange={(e) =>
+                    handleIsDoneTask(task.id, e.currentTarget.checked)
+                  }
                   className={styles.taskCheckbox}
                 />
                 <span className={styles.taskTitle}>{task.title}</span>
@@ -88,7 +97,7 @@ export const ToDoList = (props: TToDoListProps) => {
                       task.id,
                       task.title
                     );
-                    props.removeTask(task.id);
+                    removeTask(task.id);
                   }}
                 />
               </li>
