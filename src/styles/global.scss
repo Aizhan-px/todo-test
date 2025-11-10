@@ -1,21 +1,28 @@
-/* 1. Подключаем normalize */
-@import 'normalize.css';
-/* 2. Сброс некоторых базовых стилей */
-*,
-*::before,
-*::after {
+@import 'normalize.css';   //чтобы убрать стили браузера
+
+* {    
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box;  // вкл padding и  border
+}   
+
+body {  
+  font-family: Arial, sans-serif;
+  background: #f0f2f5;
+  color: #333;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
 button {
-  cursor: pointer;
-  border: none;
+  cursor: pointer; //курсор при наведении
+  border: none;   //нет рамок и фона
   background: none;
 }
 
+<<<<<<< HEAD
 .filter-btn {
   display: flex;
   justify-content: center;
@@ -28,4 +35,8 @@ button {
   padding: 8px 16px;
   background-color: #e0e0e0;
   border-color: #666;
+=======
+input {
+  font-family: inherit; //чтобы шрифт был как у родительского элемента
+>>>>>>> dev
 }

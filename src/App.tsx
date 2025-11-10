@@ -6,29 +6,57 @@ import { ToDoList } from './components/ToDoList/ToDoList.tsx';
 import { FilterBtn } from './components/FilterBtn.tsx';
 
 export function App() {
-  const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all');
+  const [filter, setFilter] = useState('all');
   const [tasks, setTasks] = useState<Task[]>([
     { id: v1(), title: 'HTML&CSS', isDone: true },
     { id: v1(), title: 'JS', isDone: true },
-    { id: v1(), title: 'CSS', isDone: false },
-    { id: v1(), title: 'API', isDone: false },
-    { id: v1(), title: 'useEffect', isDone: false },
-    { id: v1(), title: 'Java', isDone: false },
+    { id: v1(), title: 'ReactJS', isDone: false },
   ]);
-  console.log(setTasks);
+  const addTask = (title: string) => {
+    if (title.trim()) {
+      const newTask: Task = {
+        id: v1(),
+        title: title.trim(),
+        isDone: false,
+      };
+      setTasks([...tasks, newTask]);
+    }
+  };
 
+  const removeTask = (id: string) => {
+    console.log('Removing task with id:', id);
+    console.log('Current tasks:', tasks);
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
+
+  // Фильтрация задач
   let filteredTasks = tasks;
   if (filter === 'active') {
-    filteredTasks = tasks.filter((t) => !t.isDone);
-  } else if (filter === 'completed') {
-    filteredTasks = tasks.filter((t) => t.isDone);
+    filteredTasks = tasks.filter((task) => task.isDone === false);
   }
+  if (filter === 'completed') {
+    filteredTasks = tasks.filter((task) => task.isDone === true);
+  }
+
+  const handelIsDone = (id: string, cheked: boolean) => {
+    const newTasks = tasks.map((t) => {
+      if (id === t.id) return { ...t, isDone: cheked };
+      return t;
+    });
+    setTasks(newTasks);
+  };
 
   return (
     <Layout>
-      <p>Старт разработки...</p>
-      <ToDoList title={'What to learn'} tasks={filteredTasks} />
-      <FilterBtn onClickFilter={(filterValue) => setFilter(filterValue)} />
+      <ToDoList
+        addTask={addTask}
+        removeTask={removeTask}
+        title={'What to learn'}
+        tasks={filteredTasks}
+        filter={filter}
+        setFilter={setFilter}
+        handleIsDoneTask={handelIsDone}
+      />
     </Layout>
   );
 }

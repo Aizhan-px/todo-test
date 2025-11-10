@@ -1,0 +1,22 @@
+.layout {
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.layout__header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.layout__content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.layout__footer {
+  text-align: center;
+  margin-top: 20px;
+  color: #666;
+}

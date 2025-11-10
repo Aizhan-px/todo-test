@@ -1,0 +1,18 @@
+.deleteButton {
+  background: #dc3545;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deleteButton:hover {
+  background: #c82333;
+}
+
+.deleteButton svg {
+  color: white;
+}
